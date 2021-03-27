@@ -26,5 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard', ['user' => Auth::user()]);
     });
+    Route::get('/register', function () {
+        return view('register', ['user' => Auth::user()]);
+    });
 
 });

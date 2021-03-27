@@ -10,10 +10,10 @@
 
     <div class="menu-items">
         <div class="item">
-            <a href="">Ny registrering</a>
+            <a href="/register">Ny registrering</a>
         </div>
         <div class="item">
-            <a href="">Översikt</a>
+            <a href="/dashboard">Översikt</a>
         </div>
         <div class="item">
             <a href="{{ url('/logout') }}">Logga ut</a>

@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "poppins";
+    src: url(fonts/Poppins-Regular.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "poppins";
+    src: url(fonts/Poppins-Black.ttf);
+    font-weight: bold;
+}
+
+body #app{
+    font-family: "poppins";
+    h1{
+        font-size: 42px;
+        font-weight: bold;
+    }
+    h2{
+        font-size: 34px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+}
