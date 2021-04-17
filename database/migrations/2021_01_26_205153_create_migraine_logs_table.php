@@ -17,9 +17,12 @@ class CreateMigraineLogsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->text('comment')->nullable();
+            $table->string('type');
             $table->integer('pain_level')->nullable();
-            $table->timestamp('start')->useCurrent();
-            $table->timestamp('end')->useCurrent();
+            $table->date('date')->useCurrent();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+
         });
     }
 
