@@ -14,6 +14,7 @@ window.Vue = require('vue').default;
 Vue.use(Buefy)
 
 Vue.component('register', require('./components/RegisterComponent.vue').default);
+Vue.component('profile', require('./components/ProfileComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

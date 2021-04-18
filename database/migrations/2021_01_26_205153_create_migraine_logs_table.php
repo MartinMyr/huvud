@@ -20,6 +20,7 @@ class CreateMigraineLogsTable extends Migration
             $table->string('type');
             $table->integer('pain_level')->nullable();
             $table->date('date')->useCurrent();
+            $table->integer('medicin_id')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 

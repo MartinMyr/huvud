@@ -1,7 +1,9 @@
 <div id="side-menu">
     <div class="minimize"></div>
     <div class="profile">
-        <div class="img"></div>
+        <a href="/profile">
+            <div class="img"></div>
+        </a>
         <div class="info">
             <span>{{$user->name}}</span>
             <span>{{$user->email}}</span>

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Registration;
+namespace App\Http\Controllers;
 
 use App\Repositories\MigraineLogRepository;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class RegistrationController extends Controller
+class MigraineLogController extends Controller
 {
     /**
      * @param MigraineLogRepository $migraineLogRepository
