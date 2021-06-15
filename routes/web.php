@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('auth.login');
@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/register', function () {
         return view('register', ['user' => Auth::user()]);
+    });
+    Route::get('/profile', function () {
+        return view('profile', ['user' => Auth::user()]);
     });
 
 });

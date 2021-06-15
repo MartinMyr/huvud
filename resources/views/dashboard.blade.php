@@ -2,4 +2,6 @@
 
 @section('content')
 
+<chart ref="chart"></chart>
+
 @endsection
