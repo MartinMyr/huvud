@@ -8,17 +8,22 @@ require('./bootstrap');
 
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
-import VueApexCharts from 'vue-apexcharts'
+import Vue from 'vue';
+import Echarts from 'vue-echarts';
+
+import 'echarts/lib/chart/bar';
+
+
 
 window.Vue = require('vue').default;
 
 Vue.use(Buefy);
-Vue.use(VueApexCharts)
 
-Vue.component('apexchart', VueApexCharts)
 Vue.component('register', require('./components/RegisterComponent.vue').default);
 Vue.component('profile', require('./components/ProfileComponent.vue').default);
 Vue.component('chart', require('./components/Chart.vue').default);
+Vue.component('echart', Echarts);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
