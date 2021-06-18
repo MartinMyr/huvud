@@ -20,4 +20,9 @@ class MigraineLogRepository
 
         return $migraineLog;
     }
+
+    public function getAllForCurrentUser()
+    {
+
+    }
 }

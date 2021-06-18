@@ -30,4 +30,11 @@ class MigraineLogController extends Controller
             $this->migraineLogRepository->store($validated)
         );
     }
+
+    public function getAllForCurrentUser(Request $request)
+    {
+        return response()->json(
+            $this->migraineLogRepository->getAllForCurrentUser()
+        );
+    }
 }

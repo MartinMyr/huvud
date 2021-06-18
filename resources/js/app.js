@@ -22,6 +22,7 @@ Vue.use(Buefy);
 Vue.component('register', require('./components/RegisterComponent.vue').default);
 Vue.component('profile', require('./components/ProfileComponent.vue').default);
 Vue.component('chart', require('./components/Chart.vue').default);
+Vue.component('logs', require('./components/Logs.vue').default);
 Vue.component('echart', Echarts);
 
 

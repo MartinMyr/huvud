@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('register', [MigraineLogController::class, 'create']);
+Route::post('/log/register', [MigraineLogController::class, 'create']);
+Route::get('/log/getAll', [MigraineLogController::class, 'getAllForCurrentUser']);
 
 Route::get('medicins', [MedicinController::class, 'getAll']);
