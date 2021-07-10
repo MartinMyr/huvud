@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\MedicinController;
 use App\Http\Controllers\MigraineLogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +20,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/log/register', [MigraineLogController::class, 'create']);
-Route::get('/log/getAll', [MigraineLogController::class, 'getAllForCurrentUser']);
-
-Route::get('medicins', [MedicinController::class, 'getAll']);

@@ -57,26 +57,15 @@ export default {
                         name: '',
                         type: 'pie',
                         radius: '50%',
-                        data: [
-                            {value: 1048, name: 'Jan'},
-                            {value: 735, name: 'Feb'},
-                            {value: 580, name: 'Mar'},
-                            {value: 484, name: 'Apr'},
-                            {value: 300, name: 'Maj'},
-                            {value: 484, name: 'Juni'},
-                            {value: 484, name: 'Juli'},
-                            {value: 484, name: 'Aug'},
-                            {value: 484, name: 'Sep'},
-                            {value: 484, name: 'Okt'},
-                            {value: 484, name: 'Nov'},
-                            {value: 484, name: 'Dec'},
-
-                        ],
+                        data: [],
 
                     }
                 ]
             }
         };
+    },
+    beforeMount() {
+        this.getLogs();
     },
     methods: {
         onClick(event, instance, ECharts) {
@@ -85,24 +74,20 @@ export default {
         getLogs(){
             axios.get('/log/getAll')
             .then(function (response) {
-                // handle success
+                //this.option.series.data = response.data;
                 console.log(response);
             })
             .catch(function (error) {
-                // handle error
                 console.log(error);
             })
-            .then(function () {
-                // always executed
-            });
         }
     }
 };
 </script>
 
 <style scoped>
-.chart {
-  height: 600px;
-  width:100%;
-}
+    .chart {
+        height: 600px;
+        width:100%;
+    }
 </style>

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\MigraineLog;
+use Illuminate\Support\Facades\Auth;
 
 class MigraineLogRepository
 {
@@ -23,6 +24,6 @@ class MigraineLogRepository
 
     public function getAllForCurrentUser()
     {
-
+        return Auth::user();
     }
 }
