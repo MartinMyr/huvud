@@ -4,7 +4,7 @@
 
         <v-chart @click="onClick" class="chart" :option="option" />
 
-        <logs></logs>
+        <logs v-if="selectedMonth"></logs>
     </div>
 </template>
 
@@ -30,7 +30,7 @@ use([
 ]);
 
 export default {
-    name: "HelloWorld",
+    name: "Chart",
     components: {
         VChart
     },
@@ -61,25 +61,70 @@ export default {
 
                     }
                 ]
-            }
+            },
+            selectedYear: new Date().getFullYear(),
+            selectedMonth: '',
         };
     },
     beforeMount() {
         this.getLogs();
     },
     methods: {
-        onClick(event, instance, ECharts) {
-            console.log(event, instance, ECharts);
+        onClick(event) {
+
+            console.log(event.data.key);
         },
         getLogs(){
+            var ths = this;
             axios.get('/log/getAll')
             .then(function (response) {
-                //this.option.series.data = response.data;
-                console.log(response);
+                ths.setLogsCounted(response.data);
             })
             .catch(function (error) {
                 console.log(error);
             })
+        },
+        setLogsCounted(logs){
+            var values = [];
+            var ths = this;
+
+            $.each(logs[this.selectedYear], function(key, log) {
+                var obj = {};
+
+                obj['value'] = log.length;
+                obj['name'] = ths.getMonthName(parseInt(key));
+                obj['key'] = parseInt(key);
+                values.push(obj);
+            });
+            this.option.series[0].data  = values;
+        },
+        getMonthName(key){
+            switch (key) {
+                case 1:
+                    return 'Januari';
+                case 2:
+                    return 'Februari';
+                case 3:
+                    return 'Mars';
+                case 4:
+                    return 'April';
+                case 5:
+                    return 'Maj';
+                case 6:
+                    return 'Juni';
+                case 7:
+                    return 'Juli';
+                case 8:
+                    return 'Augusti';
+                case 9:
+                    return 'September';
+                case 10:
+                    return 'Oktober';
+                case 11:
+                    return 'November';
+                case 12:
+                    return 'December';
+            }
         }
     }
 };

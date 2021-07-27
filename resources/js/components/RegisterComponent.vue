@@ -105,7 +105,6 @@
 				.post("/api/log/register", this.form)
 				.then((response) => {
                     this.isLoading = false;
-                    consol
 				})
                 .catch((error) => {
                     this.isLoading = false;
