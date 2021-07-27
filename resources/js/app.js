@@ -12,8 +12,7 @@ import Vue from 'vue';
 import Echarts from 'vue-echarts';
 
 import 'echarts/lib/chart/bar';
-
-
+import '@mdi/font/css/materialdesignicons.css';
 
 window.Vue = require('vue').default;
 

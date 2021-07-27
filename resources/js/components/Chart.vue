@@ -4,7 +4,7 @@
 
         <v-chart @click="onClick" class="chart" :option="option" />
 
-        <logs v-if="selectedMonth"></logs>
+        <logs :logs="getSelectedData" v-if="selectedMonth"></logs>
     </div>
 </template>
 
@@ -58,26 +58,35 @@ export default {
                         type: 'pie',
                         radius: '50%',
                         data: [],
-
                     }
                 ]
             },
             selectedYear: new Date().getFullYear(),
             selectedMonth: '',
+            logs: [],
         };
     },
     beforeMount() {
         this.getLogs();
     },
+    computed: {
+        getSelectedData(){
+            console.log(this.logs[this.selectedYear]);
+            return this.logs[this.selectedYear][this.selectedMonth];
+        }
+    },
     methods: {
         onClick(event) {
-
-            console.log(event.data.key);
+            this.selectedMonth = event.data.key;
         },
         getLogs(){
             var ths = this;
+
             axios.get('/log/getAll')
             .then(function (response) {
+                ths.logs = response.data;
+                console.log(response.data);
+
                 ths.setLogsCounted(response.data);
             })
             .catch(function (error) {
@@ -93,9 +102,11 @@ export default {
 
                 obj['value'] = log.length;
                 obj['name'] = ths.getMonthName(parseInt(key));
-                obj['key'] = parseInt(key);
+                obj['key'] = key;
+
                 values.push(obj);
             });
+
             this.option.series[0].data  = values;
         },
         getMonthName(key){

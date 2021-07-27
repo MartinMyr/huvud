@@ -19,4 +19,13 @@ class Medicin extends Model
         'user_id',
     ];
 
+    /**
+     * A Medicin belongs to one User
+     *
+     * @return mixed
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

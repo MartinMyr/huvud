@@ -74,7 +74,7 @@
         methods:{
             getAllMeds(){
                 axios
-				.get("/api/medicins?user_id="+this.user.id)
+				.get('/medicins?user_id='+this.user.id)
 				.then((response) => {
                     console.log(response);
                     this.medicins = response.data;

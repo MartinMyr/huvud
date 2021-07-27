@@ -22,4 +22,14 @@ class MigraineLog extends Model
         'type',
     ];
 
+    /**
+     * A Migrainelog has one medicin
+     *
+     * @return mixed
+     */
+    public function medicin()
+    {
+        return $this->hasOne(Medicin::class, 'id');
+    }
+
 }

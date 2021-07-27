@@ -25,7 +25,7 @@ class MigraineLogRepository
 
     public function getAllForCurrentUser()
     {
-        $logs = MigraineLog::where('user_id', Auth::id())->get()->groupBy([function ($d) {
+        $logs = MigraineLog::with('medicin')->where('user_id', Auth::id())->get()->groupBy([function ($d) {
             return Carbon::parse($d->date)->format('Y');
         }, function ($d) {
             return Carbon::parse($d->date)->format('m');
