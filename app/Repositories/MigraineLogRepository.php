@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\MigraineLog;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class MigraineLogRepository
@@ -24,6 +25,13 @@ class MigraineLogRepository
 
     public function getAllForCurrentUser()
     {
-        return Auth::user();
+
+        $logs = MigraineLog::where('user_id', Auth::id())->get()->groupBy([function ($d) {
+            return Carbon::parse($d->date)->format('Y');
+        }, function ($d) {
+            return Carbon::parse($d->date)->format('m');
+        }]);
+
+        return $logs;
     }
 }

@@ -26,12 +26,13 @@ class MigraineLogController extends Controller
             'type'      => 'required|string',
             'comment'   => 'string|max:200',
         ]);
+
         return response()->json(
             $this->migraineLogRepository->store($validated)
         );
     }
 
-    public function getAllForCurrentUser(Request $request)
+    public function getAllForCurrentUser()
     {
         return response()->json(
             $this->migraineLogRepository->getAllForCurrentUser()
