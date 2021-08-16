@@ -84,6 +84,10 @@
 				});
             },
         },
-        props: ['user']
+        props: {
+            user: {
+                type: Object,
+            }
+        }
     }
 </script>

@@ -18,25 +18,25 @@
                 aria-page-label="Page"
                 aria-current-label="Current page">
 
-                <b-table-column field="date" label="Datum" width="40" sortable numeric v-slot="props">
+                <b-table-column field="date" label="Datum" width="20%" sortable v-slot="props">
                     <span class="tag is-success">
                         {{ props.row.date }}
                     </span>
                 </b-table-column>
 
-                <b-table-column field="pain_level" label="Nivå av smärta" v-slot="props">
+                <b-table-column field="pain_level" label="Smärta" width="10%" sortable v-slot="props">
                     {{ props.row.pain_level }}
                 </b-table-column>
 
-                <b-table-column field="type" label="Typ" sortable v-slot="props">
+                <b-table-column field="type" label="Typ" width="20%" sortable v-slot="props">
                     {{ props.row.type }}
                 </b-table-column>
 
-                <b-table-column field="medicin.medicin" label="Tagen medicin" sortable v-slot="props">
+                <b-table-column field="medicin.medicin"  width="20%" label="Tagen medicin" sortable v-slot="props">
                     {{ props.row.medicin ? props.row.medicin.medicin : '' }}
                 </b-table-column>
 
-                <b-table-column field="comment" label="Kommentar" v-slot="props">
+                <b-table-column field="comment" label="Kommentar" width="30%" v-slot="props">
                     {{ props.row.comment }}
                 </b-table-column>
 

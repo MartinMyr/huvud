@@ -115,9 +115,13 @@
                 var dateString = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
                 this.form.date =  dateString;
 
-                return dateString;
+                return Date.parse(dateString);
             },
         },
-        props: ['user']
+        props: {
+            user: {
+                type: Object,
+            }
+        }
     }
 </script>
