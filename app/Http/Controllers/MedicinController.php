@@ -24,6 +24,13 @@ class MedicinController extends Controller
 
     public function create(Request $request)
     {
+        $validated = $request->validate([
+            'user_id' => 'required|numeric',
+            'medicin' => 'required|string',
+        ]);
 
+        return response()->json(
+            $this->migraineLogRepository->store($validated)
+        );
     }
 }

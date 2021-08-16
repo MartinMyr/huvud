@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\MigraineLogRepository;
+use App\Services\MigraineLog\MigraineLogService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class MigraineLogController extends Controller
 {
     /**
-     * @param MigraineLogRepository $migraineLogRepository
+     * @var mixed
      */
-    public function __construct(MigraineLogRepository $migraineLogRepository)
+    private $migraineLogService;
+
+    public function __construct()
     {
-        $this->migraineLogRepository = $migraineLogRepository;
+        $this->migraineLogService = app()->make(MigraineLogService::class);
     }
 
     public function create(Request $request)
     {
-
         $validated = $request->validate([
             'user_id'   => 'required|numeric',
             'painLevel' => 'required|numeric',
@@ -28,14 +29,14 @@ class MigraineLogController extends Controller
         ]);
 
         return response()->json(
-            $this->migraineLogRepository->store($validated)
+            $this->migraineLogService->create($validated)
         );
     }
 
     public function getAllForCurrentUser()
     {
         return response()->json(
-            $this->migraineLogRepository->getAllForCurrentUser()
+            $this->migraineLogService->getAllForCurrentUser()
         );
     }
 }

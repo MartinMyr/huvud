@@ -50,7 +50,7 @@
                 <b-datepicker v-model="form.date"
                     :first-day-of-week="1"
                     placeholder="Klicka här"
-                    :date-formatter="formatDate">
+                    :date-formatter="dateFormatter">
 
                 </b-datepicker>
             </b-field>
@@ -102,7 +102,7 @@
             handleSubmit(){
                 this.isLoading = true;
                 axios
-				.post("/api/log/register", this.form)
+				.post("/log/register", this.form)
 				.then((response) => {
                     this.isLoading = false;
 				})
@@ -111,11 +111,9 @@
 					console.error(error);
 				});
             },
-            formatDate(d){
-                var dateString = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
-                this.form.date =  dateString;
-
-                return Date.parse(dateString);
+            dateFormatter(dt){
+                var dateoptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
+                return dt.toLocaleDateString('sv-SE', dateoptions);
             },
         },
         props: {

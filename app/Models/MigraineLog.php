@@ -32,4 +32,12 @@ class MigraineLog extends Model
         return $this->hasOne(Medicin::class, 'id');
     }
 
+    /**
+     * Mutator setDateAttribute
+     */
+    public function setDateAttribute($value)
+    {
+        $date                     = new \DateTime($value);
+        $this->attributes['date'] = $date->format('Y-m-d');
+    }
 }

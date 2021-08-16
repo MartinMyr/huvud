@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/log/getAll', [MigraineLogController::class, 'getAllForCurrentUser']);
-    Route::get('medicins', [MedicinController::class, 'getAll']);
+    Route::post('/log/register', [MigraineLogController::class, 'create']);
+
+    Route::get('/medicins', [MedicinController::class, 'getAll']);
+    Route::post('/medicin/create', [MedicinController::class, 'create']);
 
 });

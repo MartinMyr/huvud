@@ -3,34 +3,39 @@
 namespace App\Repositories;
 
 use App\Models\MigraineLog;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\Contracts\RepositoryInterface;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
-class MigraineLogRepository
+class MigraineLogRepository implements RepositoryInterface
 {
-    public function store($data)
+    /**
+     * Initiate query builder
+     *
+     * @return Builder
+     */
+    public function queryBuilder(): Builder
     {
-        $migraineLog = MigraineLog::create([
-            'user_id'    => data_get($data, 'user_id'),
-            'comment'    => data_get($data, 'comment'),
-            'pain_level' => data_get($data, 'painLevel'),
-            'date'       => data_get($data, 'date'),
-            'type'       => data_get($data, 'type'),
-        ]);
-
-        $migraineLog->save();
-
-        return $migraineLog;
+        return MigraineLog::query();
     }
 
-    public function getAllForCurrentUser()
+    /**
+     * Initialize a new instance
+     *
+     * @return Model
+     */
+    public function initialize(): Model
     {
-        $logs = MigraineLog::with('medicin')->where('user_id', Auth::id())->get()->groupBy([function ($d) {
-            return Carbon::parse($d->date)->format('Y');
-        }, function ($d) {
-            return Carbon::parse($d->date)->format('m');
-        }]);
-
-        return $logs;
+        return new MigraineLog();
     }
+
+    /**
+     * @param Model $model
+     * @return boolean
+     */
+    public function store(Model $model): bool
+    {
+        return $model->save();
+    }
+
 }
