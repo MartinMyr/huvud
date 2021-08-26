@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicin;
+use App\Services\Medicin\MedicinService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class MedicinController extends Controller
 {
+
+    private $medicinService;
+
+    public function __construct()
+    {
+        $this->medicinService = app()->make(MedicinService::class);
+    }
 
     public function getAll(Request $request)
     {
@@ -16,10 +23,7 @@ class MedicinController extends Controller
             'user_id' => 'required|numeric',
         ]);
 
-        return response()->json(
-            Medicin::all()
-                ->where('user_id', data_get($validated, 'user_id'))
-        );
+        return response()->json($this->medicinService->getAll($validated));
     }
 
     public function create(Request $request)
