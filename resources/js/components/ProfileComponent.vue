@@ -28,7 +28,7 @@
         </div>
 
         <div class="input-wrapper">
-            <b-button  type="is-dark">Registrera</b-button>
+            <b-button  type="is-dark">Spara</b-button>
         </div>
 
         <div class="meds">
@@ -37,17 +37,15 @@
             <div class="row">
                 <div class="col-sm-6">
                     <b-field label="Lägg till medicin">
-                        <b-input></b-input>
+                        <b-input v-model="newMedicin"></b-input>
                     </b-field>
+                    <div class="input-wrapper">
+                        <b-button @click="addMedicin()"  type="is-dark">Lägg till</b-button>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                      <b-table :data="medicins" :columns="columns"></b-table>
                 </div>
-            </div>
-
-
-            <div class="input-wrapper">
-                <b-button  type="is-dark">Registrera</b-button>
             </div>
         </div>
     </div>
@@ -60,12 +58,13 @@
                 columns: [
                     {
                         field: 'medicin',
-                        label: 'Sparade mediciner',
+                        label: 'Min medicin',
                         width: '100',
                         numeric: false
                     },
                 ],
                 medicins: [],
+                newMedicin: ''
             };
 	    },
         mounted() {
@@ -76,8 +75,24 @@
                 axios
 				.get('/medicins?user_id='+this.user.id)
 				.then((response) => {
-                    console.log(response);
                     this.medicins = response.data;
+				})
+                .catch((error) => {
+					console.error(error);
+				});
+            },
+            addMedicin(){
+                if(this.newMedicin == ''){return;}
+                axios
+				.post('medicin/create', {
+                    user_id: this.user.id,
+                    medicin: this.newMedicin
+                })
+				.then((response) => {
+                    if(response){
+                        this.newMedicin = '';
+                        this.getAllMeds();
+                    }
 				})
                 .catch((error) => {
 					console.error(error);

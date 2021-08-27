@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Medicin extends Model
 {
+    public $timestamps = false;
+
     use HasFactory;
 
     /**

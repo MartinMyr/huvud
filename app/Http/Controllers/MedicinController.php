@@ -34,7 +34,7 @@ class MedicinController extends Controller
         ]);
 
         return response()->json(
-            $this->migraineLogRepository->store($validated)
+            $this->medicinService->store($validated)
         );
     }
 }
