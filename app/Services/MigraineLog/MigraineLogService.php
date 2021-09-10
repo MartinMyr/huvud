@@ -20,6 +20,13 @@ class MigraineLogService implements MigraineLogInterface
         $this->migraineLogRepository = app()->make(MigraineLogRepository::class);
     }
 
+    /**
+     * create migraine log
+     *
+     * @param array $data
+     *
+     * @return Model
+     */
     public function create($data)
     {
         $migraineLog             = $this->migraineLogRepository->initialize();
@@ -34,6 +41,11 @@ class MigraineLogService implements MigraineLogInterface
         return $migraineLog;
     }
 
+    /**
+     * get all migraine logs for current user
+     *
+     * @return array
+     */
     public function getAllForCurrentUser()
     {
         $logs = MigraineLog::with('medicin')->where('user_id', Auth::id())->get()->groupBy([function ($d) {

@@ -2,8 +2,8 @@
     <div id="register" class="container">
 
         <h1>Hej {{ user.name }} hur ont har du just nu?</h1>
-        <div class="painscale input-wrapper">
 
+        <div class="painscale input-wrapper">
             <div class="items">
                 <div
                     class="item"
@@ -14,7 +14,6 @@
                         name="painLevel"
                         :native-value="i + 1">
                         {{ i + 1 }}
-
                     </b-radio>
                 </div>
             </div>
@@ -22,7 +21,6 @@
                 <span>Lätt känning</span>
                 <span>Migrän!</span>
             </div>
-
         </div>
 
         <div class="pain-type input-wrapper">
@@ -58,9 +56,7 @@
         </div>
 
         <div class="meds input-wrapper">
-
             <h2>Medicin</h2>
-
         </div>
 
         <div class="comment input-wrapper">

@@ -6,6 +6,9 @@ use App\Repositories\MedicinRepository;
 
 class MedicinService
 {
+    /**
+     * @var mixed
+     */
     private $medicinRepository;
 
     public function __construct()
@@ -13,12 +16,26 @@ class MedicinService
         $this->medicinRepository = app()->make(MedicinRepository::class);
     }
 
+    /**
+     * get all medicins for current user
+     *
+     * @param array $data
+     *
+     * @return array
+     */
     public function getAll($data)
     {
         return $this->medicinRepository->queryBuilder()
             ->where('user_id', data_get($data, 'user_id'))->get();
     }
 
+    /**
+     * store medicin
+     *
+     * @param array $data
+     *
+     * @return array
+     */
     public function store($data)
     {
         $medicin          = $this->medicinRepository->initialize();

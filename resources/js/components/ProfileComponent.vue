@@ -1,6 +1,8 @@
 <template>
     <div id="profile" class="container">
+
         <h1>Min profil</h1>
+
         <div class="row">
             <div class="col-sm-6">
                 <b-field label="Namn">
@@ -16,9 +18,10 @@
                 </b-field>
             </div>
         </div>
+
         <div class="row">
             <div class="col-sm-6">
-                 <b-field label="Password">
+                <b-field label="Password">
                     <b-input type="password"
                         placeholder="************"
                         password-reveal>
@@ -32,6 +35,7 @@
         </div>
 
         <div class="meds">
+
             <h2>Medicin</h2>
 
             <div class="row">
@@ -48,6 +52,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -83,6 +88,7 @@
             },
             addMedicin(){
                 if(this.newMedicin == ''){return;}
+
                 axios
 				.post('medicin/create', {
                     user_id: this.user.id,

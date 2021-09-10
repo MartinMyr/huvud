@@ -4,11 +4,9 @@
         box-shadow: none;
         border-radius: 4px;
     }
-
     .input-wrapper{
         margin-bottom: 50px;
     }
-
     .painscale{
         display: inline-block;
         .items{
@@ -38,7 +36,6 @@
             justify-content: space-between;
         }
     }
-
     .pain-type{
         .select{
             &:after{
@@ -46,7 +43,6 @@
             }
         }
     }
-
     .time{
         .dropdown{
             max-width: 110px;
@@ -57,7 +53,6 @@
             }
         }
     }
-
     .comment{
         .field{
             max-width: 600px;
