@@ -16,7 +16,7 @@ class MedicinController extends Controller
         $this->medicinService = app()->make(MedicinService::class);
     }
 
-    public function getAll(Request $request)
+    public function getAllForCurrentUser(Request $request)
     {
 
         $validated = $request->validate([

@@ -78,7 +78,7 @@
         methods:{
             getAllMeds(){
                 axios
-				.get('/medicins?user_id='+this.user.id)
+				.get('/api/medicins?user_id='+this.user.id)
 				.then((response) => {
                     this.medicins = response.data;
 				})
@@ -90,7 +90,7 @@
                 if(this.newMedicin == ''){return;}
 
                 axios
-				.post('medicin/create', {
+				.post('/api/medicin/create', {
                     user_id: this.user.id,
                     medicin: this.newMedicin
                 })

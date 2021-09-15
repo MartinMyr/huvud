@@ -81,7 +81,7 @@
             getLogs(){
                 var ths = this;
 
-                axios.get('/log/getAll')
+                axios.get('/api/logs')
                 .then(function (response) {
                     ths.logs = response.data;
                     console.log(response.data);

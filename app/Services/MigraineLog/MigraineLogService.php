@@ -48,12 +48,12 @@ class MigraineLogService implements MigraineLogInterface
      */
     public function getAllForCurrentUser()
     {
+        dd(Auth::id()->get());
         $logs = MigraineLog::with('medicin')->where('user_id', Auth::id())->get()->groupBy([function ($d) {
             return Carbon::parse($d->date)->format('Y');
         }, function ($d) {
             return Carbon::parse($d->date)->format('m');
         }]);
-
         return $logs;
     }
 }

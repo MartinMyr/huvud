@@ -113,7 +113,7 @@
             handleSubmit(){
                 this.isLoading = true;
                 axios
-				.post("/log/register", this.form)
+				.post("/api/log/register", this.form)
 				.then((response) => {
                     setTimeout(() => {
                         this.isLoading = false,
