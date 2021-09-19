@@ -33,10 +33,10 @@ class MigraineLogController extends Controller
         );
     }
 
-    public function getAllForCurrentUser()
+    public function getAllForCurrentUser(int $userId)
     {
         return response()->json(
-            $this->migraineLogService->getAllForCurrentUser()
+            $this->migraineLogService->getAllForCurrentUser($userId)
         );
     }
 }

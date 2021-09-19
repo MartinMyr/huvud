@@ -81,7 +81,7 @@
             getLogs(){
                 var ths = this;
 
-                axios.get('/api/logs')
+                axios.get(`/api/logs/${this.user.id}`)
                 .then(function (response) {
                     ths.logs = response.data;
                     console.log(response.data);
@@ -135,6 +135,11 @@
                     case 12:
                         return 'December';
                 }
+            }
+        },
+        props: {
+            user: {
+                type: Object,
             }
         }
     };

@@ -6,7 +6,6 @@ use App\Models\MigraineLog;
 use App\Repositories\MigraineLogRepository;
 use App\Services\MigraineLog\MigraineLogInterface;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class MigraineLogService implements MigraineLogInterface
 {
@@ -44,12 +43,13 @@ class MigraineLogService implements MigraineLogInterface
     /**
      * get all migraine logs for current user
      *
+     * @param int $userId
+     *
      * @return array
      */
-    public function getAllForCurrentUser()
+    public function getAllForCurrentUser($userId)
     {
-        dd(Auth::id()->get());
-        $logs = MigraineLog::with('medicin')->where('user_id', Auth::id())->get()->groupBy([function ($d) {
+        $logs = MigraineLog::with('medicin')->where('user_id', $userId)->get()->groupBy([function ($d) {
             return Carbon::parse($d->date)->format('Y');
         }, function ($d) {
             return Carbon::parse($d->date)->format('m');

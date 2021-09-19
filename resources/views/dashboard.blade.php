@@ -2,6 +2,6 @@
 
 @section('content')
 
-<chart ref="chart"></chart>
+<chart :user="{{$user}}" ref="chart"></chart>
 
 @endsection

@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Auth::routes();
+Route::redirect('/', '/login');
+
+Auth::routes([
+    'register' => false,
+    'reset'    => false,
+    'verify'   => false,
+]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
