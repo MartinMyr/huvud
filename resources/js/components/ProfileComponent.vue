@@ -3,7 +3,7 @@
 
         <h1>Min profil</h1>
 
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-sm-6">
                 <b-field label="Namn">
                     <b-input v-model="user.name"></b-input>
@@ -21,10 +21,24 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <b-field label="Password">
+                <b-field label="Nytt lösenord">
                     <b-input type="password"
                         placeholder="************"
                         password-reveal>
+                    </b-input>
+                </b-field>
+            </div>
+            <div class="col-sm-6">
+                <b-field label="Gammalt lösenord">
+                    <b-input type="password"
+                        placeholder="************"
+                        password-reveal>
+                    </b-input>
+                </b-field>
+            </div>
+            <div class="col-sm-6">
+                <b-field label="Profilbild">
+                    <b-input type="file">
                     </b-input>
                 </b-field>
             </div>
