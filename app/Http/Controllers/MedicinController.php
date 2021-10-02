@@ -16,14 +16,9 @@ class MedicinController extends Controller
         $this->medicinService = app()->make(MedicinService::class);
     }
 
-    public function getAllForCurrentUser(Request $request)
+    public function getAllForCurrentUser(int $userId)
     {
-
-        $validated = $request->validate([
-            'user_id' => 'required|numeric',
-        ]);
-
-        return response()->json($this->medicinService->getAll($validated));
+        return response()->json($this->medicinService->getAll($userId));
     }
 
     public function create(Request $request)

@@ -26,8 +26,8 @@ Route::get('/logs/{userId}', [MigraineLogController::class, 'getAllForCurrentUse
 Route::post('/log/register', [MigraineLogController::class, 'create']);
 
 //Medicin Controller
-Route::get('/medicins', [MedicinController::class, 'getAllForCurrentUser']);
+Route::get('/medicins/{userId}', [MedicinController::class, 'getAllForCurrentUser']);
 Route::post('/medicin/create', [MedicinController::class, 'create']);
 
 //User Controller
-Route::post('/user/update', [UserController::class, 'update']);
+Route::post('/user/update/profile', [UserController::class, 'update']);

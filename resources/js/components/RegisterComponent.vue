@@ -76,17 +76,7 @@
         <div class="input-wrapper">
             <b-button @click="handleSubmit" type="is-dark">Registrera</b-button>
         </div>
-        <b-loading :is-full-page="true" v-model="isLoading"></b-loading>
-        <div v-if="successMsg.show" class="success-msg">
-            <div v-if="successMsg.success" class="success">
-                <i class="fas fa-check"></i>
-                <p>Sparad</p>
-            </div>
-            <div v-else class="failed">
-                <i class="fas fa-times"></i>
-                <p>Misslyckades att spara</p>
-            </div>
-        </div>
+        <loading :showMsg="showMsg" :success="success" :isLoading="isLoading"></loading>
 
     </div>
 </template>
@@ -100,10 +90,8 @@
                 types: ['Huvudvärk', 'Migrän'],
                 form: {},
                 isLoading: false,
-                successMsg: {
-                    show: false,
-                    success: false,
-                }
+                success: false,
+                showMsg: false,
             };
 	    },
         mounted() {
@@ -116,15 +104,27 @@
 				.post("/api/log/register", this.form)
 				.then((response) => {
                     setTimeout(() => {
-                        this.isLoading = false,
-                        this.showSuccessMsg(true)
+                        this.isLoading = false;
+                        this.success = true;
+                        this.showMsg = true;
+
+                        setTimeout(() => {
+                            this.showMsg = false;
+                        }, 1000);
                     }, 1000);
 				})
                 .catch((error) => {
                     setTimeout(() => {
-                        this.isLoading = false,
-                        this.showSuccessMsg(false);
+                        this.isLoading = false;
+                        this.success = false;
+                        this.showMsg = true;
+
+                        setTimeout(() => {
+                            this.showMsg = false;
+                        }, 1000);
                     }, 1000);
+
+
 
 					console.error(error);
 				});
@@ -134,22 +134,11 @@
 
                 return dt.toLocaleDateString('sv-SE', dateoptions);
             },
-            showSuccessMsg(bool){
-                console.log(bool)
-                if(bool){
-                    this.successMsg.success = true;
-                    this.successMsg.show = true;
-                }else{
-                    this.successMsg.success = false;
-                    this.successMsg.show = true;
-                }
-                setTimeout(() => this.successMsg.show = false, 1000);
-            }
         },
         props: {
             user: {
                 type: Object,
             }
-        }
+        },
     }
 </script>

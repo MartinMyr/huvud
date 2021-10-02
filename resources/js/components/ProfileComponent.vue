@@ -17,14 +17,11 @@
                     </b-input>
                 </b-field>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-6">
-                <b-field label="Nytt lösenord">
-                    <b-input type="password"
-                        placeholder="************"
-                        password-reveal>
+                <b-field label="Profilbild">
+                    <b-input type="file"
+                        :value="user.profile_img"
+                    >
                     </b-input>
                 </b-field>
             </div>
@@ -37,15 +34,26 @@
                 </b-field>
             </div>
             <div class="col-sm-6">
-                <b-field label="Profilbild">
-                    <b-input type="file">
+                <b-field label="Nytt lösenord">
+                    <b-input type="password"
+                        placeholder="************"
+                        password-reveal>
                     </b-input>
                 </b-field>
             </div>
-        </div>
-
-        <div class="input-wrapper">
-            <b-button  type="is-dark">Spara</b-button>
+            <div class="col-sm-6">
+                <b-field label="Bekräfta nytt lösenord">
+                    <b-input type="password"
+                        placeholder="************"
+                        password-reveal>
+                    </b-input>
+                </b-field>
+            </div>
+            <div class="col-12">
+                <div class="input-wrapper">
+                    <b-button @click="saveProfile" type="is-dark">Spara</b-button>
+                </div>
+            </div>
         </div>
 
         <div class="meds">
@@ -66,7 +74,7 @@
                 </div>
             </div>
         </div>
-
+        <loading :showMsg="showMsg" :success="success" :isLoading="isLoading"></loading>
     </div>
 </template>
 
@@ -83,16 +91,52 @@
                     },
                 ],
                 medicins: [],
-                newMedicin: ''
+                newMedicin: '',
+                isLoading: false,
+                success: false,
+                showMsg: false,
             };
 	    },
         mounted() {
             this.getAllMeds();
         },
         methods:{
+            saveProfile(){
+                this.isLoading = true;
+
+                axios
+				.post('/api/user/update/profile', {
+                    name: this.user.name,
+                    email: this.user.email,
+                    profile_img: this.user.profile_img,
+                })
+				.then((response) => {
+                    setTimeout(() => {
+                        this.isLoading = false;
+                        this.success = true;
+                        this.showMsg = true;
+
+                        setTimeout(() => {
+                            this.showMsg = false;
+                        }, 1000);
+                    }, 1000);
+				})
+                .catch((error) => {
+                    setTimeout(() => {
+                        this.isLoading = false;
+                        this.success = false;
+                        this.showMsg = true;
+
+                        setTimeout(() => {
+                            this.showMsg = false;
+                        }, 1000);
+                    }, 1000);
+					console.error(error);
+				});
+            },
             getAllMeds(){
                 axios
-				.get('/api/medicins?user_id='+this.user.id)
+				.get(`/api/medicins/${this.user.id}`)
 				.then((response) => {
                     this.medicins = response.data;
 				})

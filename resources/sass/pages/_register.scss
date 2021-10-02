@@ -58,32 +58,4 @@
             max-width: 600px;
         }
     }
-    .success-msg{
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #0000008a;
-        .success, .failed{
-            background-color: #fff;
-            padding: 60px 80px;
-            text-align: center;
-            i{
-                font-size: 110px;
-                &.fa-check{
-                    color: rgb(33, 160, 33);
-                }
-                &.fa-times{
-                    color: rgb(161, 24, 24);
-                }
-            }
-            p{
-                color: #007E8D;
-            }
-        }
-    }
 }

@@ -20,8 +20,9 @@ Vue.use(Buefy);
 
 Vue.component('register', require('./components/RegisterComponent.vue').default);
 Vue.component('profile', require('./components/ProfileComponent.vue').default);
-Vue.component('chart', require('./components/Chart.vue').default);
-Vue.component('logs', require('./components/Logs.vue').default);
+Vue.component('loading', require('./components/LoadingComponent.vue').default);
+Vue.component('chart', require('./components/ChartComponent.vue').default);
+Vue.component('logs', require('./components/LogComponent.vue').default);
 Vue.component('echart', Echarts);
 
 
