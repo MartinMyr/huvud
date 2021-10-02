@@ -16,17 +16,19 @@ class UserService implements UserInterface
 
     public function update($data)
     {
-        $image     = data_get($data, 'profile_img');
-        $imageName = '';
+        $image = data_get($data, 'profile_img');
         if ($image) {
             $imageName = $this->saveImage($image);
         }
 
-        $builder           = $this->userRepository->queryBuilder();
-        $user              = $builder->where('id', data_get($data, 'id'))->firstOrFail();
-        $user->name        = data_get($data, 'name');
-        $user->email       = data_get($data, 'email');
-        $user->profile_img = $imageName;
+        $builder     = $this->userRepository->queryBuilder();
+        $user        = $builder->where('id', data_get($data, 'id'))->firstOrFail();
+        $user->name  = data_get($data, 'name');
+        $user->email = data_get($data, 'email');
+
+        if (isset($imageName)) {
+            $user->profile_img = $imageName;
+        }
 
         $this->userRepository->store($user);
 
