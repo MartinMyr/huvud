@@ -37,4 +37,5 @@ class UserRepository implements RepositoryInterface
     {
         return $model->save();
     }
+
 }

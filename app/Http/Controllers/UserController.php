@@ -17,7 +17,9 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+
         $validated = $request->validate([
+            'id'               => 'required|integer',
             'name'             => 'required|string',
             'email'            => 'required|email',
             'profile_img'      => 'image|mimes:jpg,png,jpeg,gif,svg|nullable',

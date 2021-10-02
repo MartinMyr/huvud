@@ -2,7 +2,16 @@
     <div class="minimize"></div>
     <div class="profile">
         <a href="/profile">
-            <div class="img"></div>
+            @if(isset($user->profile_img))
+                <div
+                    class="img"
+                    style="background:url({{url('/images/'.$user->profile_img)}})"
+                ></div>
+            @elseif(empty($data->coverphoto) || $data->coverphoto == null)
+                <div class="img"></div>
+            @endif
+
+
         </a>
         <div class="info">
             <span>{{$user->name}}</span>

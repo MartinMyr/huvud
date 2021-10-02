@@ -22,7 +22,8 @@ class UserService implements UserInterface
             $imageName = $this->saveImage($image);
         }
 
-        $user              = $this->userRepository->initialize();
+        $builder           = $this->userRepository->queryBuilder();
+        $user              = $builder->where('id', data_get($data, 'id'))->firstOrFail();
         $user->name        = data_get($data, 'name');
         $user->email       = data_get($data, 'email');
         $user->profile_img = $imageName;

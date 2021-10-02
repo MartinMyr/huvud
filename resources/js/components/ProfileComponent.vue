@@ -18,11 +18,13 @@
                 </b-field>
             </div>
             <div class="col-sm-6">
-                <b-field label="Profilbild">
-                    <b-input type="file"
-                        :value="user.profile_img"
-                    >
-                    </b-input>
+                <b-field class="is-primary" label="Profilbild">
+                    <b-upload v-model="image" class="file-label">
+                        <span class="file-cta">
+                            <b-icon class="file-icon" icon="upload"></b-icon>
+                            <span class="file-label">Ladda upp</span>
+                        </span>
+                    </b-upload>
                 </b-field>
             </div>
             <div class="col-sm-6">
@@ -51,7 +53,7 @@
             </div>
             <div class="col-12">
                 <div class="input-wrapper">
-                    <b-button @click="saveProfile" type="is-dark">Spara</b-button>
+                    <b-button @click="updateProfile" type="is-dark">Spara</b-button>
                 </div>
             </div>
         </div>
@@ -95,21 +97,31 @@
                 isLoading: false,
                 success: false,
                 showMsg: false,
+                image: [],
             };
 	    },
         mounted() {
+
             this.getAllMeds();
         },
         methods:{
-            saveProfile(){
+            updateProfile(){
                 this.isLoading = true;
 
+                const config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                }
+
+                let formData = new FormData();
+                formData.append('profile_img', this.image);
+                formData.append('name', this.user.name);
+                formData.append('email', this.user.email);
+                formData.append('id', this.user.id);
+
                 axios
-				.post('/api/user/update/profile', {
-                    name: this.user.name,
-                    email: this.user.email,
-                    profile_img: this.user.profile_img,
-                })
+				.post('/api/user/update/profile', formData, config )
 				.then((response) => {
                     setTimeout(() => {
                         this.isLoading = false;
