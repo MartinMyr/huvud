@@ -32,4 +32,11 @@ class MedicinController extends Controller
             $this->medicinService->store($validated)
         );
     }
+
+    public function delete(int $id)
+    {
+        return response()->json(
+            $this->medicinService->delete($id)
+        );
+    }
 }

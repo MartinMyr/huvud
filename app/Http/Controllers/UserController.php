@@ -19,13 +19,13 @@ class UserController extends Controller
     {
 
         $validated = $request->validate([
-            'id'               => 'required|integer',
-            'name'             => 'required|string',
-            'email'            => 'required|email',
-            'profile_img'      => 'image|mimes:jpg,png,jpeg,gif,svg|nullable',
-            'old_password'     => 'password|sometimes',
-            'password'         => 'password|sometimes',
-            'confirm_password' => 'same:password|sometimes',
+            'id'           => 'required|integer',
+            'name'         => 'required|string',
+            'email'        => 'required|email',
+            'profile_img'  => 'image|mimes:jpg,png,jpeg,gif,svg|nullable',
+            'old_password' => 'password|sometimes',
+            'password'     => 'password|sometimes',
+            'c_password'   => 'same:password|sometimes',
         ]);
 
         return response()->json(

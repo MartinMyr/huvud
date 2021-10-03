@@ -23,10 +23,10 @@ class MedicinService
      *
      * @return array
      */
-    public function getAll($data)
+    public function getAll($id)
     {
         return $this->medicinRepository->queryBuilder()
-            ->where('user_id', data_get($data, 'user_id'))->get();
+            ->where('user_id', $id)->get();
     }
 
     /**
@@ -43,5 +43,19 @@ class MedicinService
         $medicin->medicin = data_get($data, 'medicin');
 
         return $this->medicinRepository->store($medicin);
+    }
+
+    /**
+     * delete medicin
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    public function delete($id)
+    {
+        $builder = $this->medicinRepository->queryBuilder();
+
+        return $builder->findOrFail($id)->delete();
     }
 }

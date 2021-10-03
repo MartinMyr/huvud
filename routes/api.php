@@ -28,6 +28,7 @@ Route::post('/log/register', [MigraineLogController::class, 'create']);
 //Medicin Controller
 Route::get('/medicins/{userId}', [MedicinController::class, 'getAllForCurrentUser']);
 Route::post('/medicin/create', [MedicinController::class, 'create']);
+Route::delete('/medicin/delete/{id}', [MedicinController::class, 'delete']);
 
 //User Controller
 Route::post('/user/update/profile', [UserController::class, 'update']);

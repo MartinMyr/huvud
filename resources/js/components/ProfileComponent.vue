@@ -31,7 +31,9 @@
                 <b-field label="Gammalt lösenord">
                     <b-input type="password"
                         placeholder="************"
-                        password-reveal>
+                        password-reveal
+                        v-model="user.old_password"
+                    >
                     </b-input>
                 </b-field>
             </div>
@@ -39,7 +41,9 @@
                 <b-field label="Nytt lösenord">
                     <b-input type="password"
                         placeholder="************"
-                        password-reveal>
+                        password-reveal
+                        v-model="user.password"
+                        >
                     </b-input>
                 </b-field>
             </div>
@@ -47,7 +51,9 @@
                 <b-field label="Bekräfta nytt lösenord">
                     <b-input type="password"
                         placeholder="************"
-                        password-reveal>
+                        password-reveal
+                        v-model="user.c_password"
+                    >
                     </b-input>
                 </b-field>
             </div>
@@ -72,7 +78,33 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                     <b-table :data="medicins" :columns="columns"></b-table>
+                    <div class="b-table">
+                        <div class="table-wrapper has-mobile-cards">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="th-wrap">
+                                                <span class="is-relative"> Min medicin</span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="medicin in medicins">
+                                        <td>
+                                            <span>{{medicin.medicin}}</span>
+                                            <span
+                                                class="delete-med"
+                                                :data-id="medicin.id"
+                                                @click="deleteMedicin(medicin.id)"
+                                            ></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,10 +133,38 @@
             };
 	    },
         mounted() {
-
             this.getAllMeds();
         },
         methods:{
+            deleteMedicin(id){
+                this.isLoading = true;
+
+                axios
+				.delete(`/api/medicin/delete/${id}`)
+				.then((response) => {
+                    setTimeout(() => {
+                        this.isLoading = false;
+                        this.success = true;
+                        this.showMsg = true;
+                        this.getAllMeds();
+                        setTimeout(() => {
+                            this.showMsg = false;
+                        }, 1000);
+                    }, 1000);
+				})
+                .catch((error) => {
+                    setTimeout(() => {
+                        this.isLoading = false;
+                        this.success = false;
+                        this.showMsg = true;
+
+                        setTimeout(() => {
+                            this.showMsg = false;
+                        }, 1000);
+                    }, 1000);
+					console.error(error);
+				});
+            },
             updateProfile(){
                 this.isLoading = true;
 
