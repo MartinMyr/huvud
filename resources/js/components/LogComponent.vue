@@ -33,7 +33,7 @@
                 </b-table-column>
 
                 <b-table-column field="medicin.medicin"  width="20%" label="Tagen medicin" sortable v-slot="props">
-                    {{ props.row.medicin ? props.row.medicin.medicin : '' }}
+                    {{ props.row.medicin ? props.row.medicin.name : '' }}
                 </b-table-column>
 
                 <b-table-column field="comment" label="Kommentar" width="30%" v-slot="props">

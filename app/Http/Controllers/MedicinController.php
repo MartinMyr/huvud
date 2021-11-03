@@ -25,7 +25,7 @@ class MedicinController extends Controller
     {
         $validated = $request->validate([
             'user_id' => 'required|numeric',
-            'medicin' => 'required|string',
+            'name' => 'required|string',
         ]);
 
         return response()->json(

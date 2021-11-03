@@ -93,7 +93,7 @@
                                 <tbody>
                                     <tr v-for="medicin in medicins">
                                         <td>
-                                            <span>{{medicin.medicin}}</span>
+                                            <span>{{medicin.name}}</span>
                                             <span
                                                 class="delete-med"
                                                 :data-id="medicin.id"
@@ -222,7 +222,7 @@
                 axios
 				.post('/api/medicin/create', {
                     user_id: this.user.id,
-                    medicin: this.newMedicin
+                    name: this.newMedicin
                 })
 				.then((response) => {
                     if(response){

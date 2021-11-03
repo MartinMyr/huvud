@@ -17,7 +17,7 @@ class Medicin extends Model
      * @var array
      */
     protected $fillable = [
-        'medicin',
+        'name',
         'user_id',
     ];
 

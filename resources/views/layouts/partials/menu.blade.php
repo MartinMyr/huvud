@@ -27,7 +27,10 @@
             <a href="/dashboard">Översikt</a>
         </div>
         <div class="item">
-            <a href="{{ url('/logout') }}">Logga ut</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
         </div>
     </div>
 </div>

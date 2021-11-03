@@ -19,7 +19,7 @@ class MedicinService
     /**
      * get all medicins for current user
      *
-     * @param array $data
+     * @param integer id
      *
      * @return array
      */
@@ -40,7 +40,7 @@ class MedicinService
     {
         $medicin          = $this->medicinRepository->initialize();
         $medicin->user_id = data_get($data, 'user_id');
-        $medicin->medicin = data_get($data, 'medicin');
+        $medicin->name    = data_get($data, 'name');
 
         return $this->medicinRepository->store($medicin);
     }

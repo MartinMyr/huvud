@@ -55,8 +55,21 @@
 
         </div>
 
-        <div class="meds input-wrapper">
+        <div
+            class="meds input-wrapper"
+            v-if="medicins">
             <h2>Medicin</h2>
+
+            <b-select
+                v-model="form.medicin"
+                placeholder="Välj">
+                <option
+                    v-for="medicin in medicins"
+                    :value="medicin.id"
+                    :key="medicin.id">
+                    {{ medicin.name }}
+                </option>
+            </b-select>
         </div>
 
         <div class="comment input-wrapper">
@@ -92,16 +105,30 @@
                 isLoading: false,
                 success: false,
                 showMsg: false,
+                medicins: [],
             };
 	    },
+        beforeMount() {
+            this.getMedicins();
+        },
         mounted() {
             this.form.user_id = this.user.id;
         },
         methods:{
+            getMedicins(){
+                axios
+                .get(`/api/medicins/${this.user.id}`)
+                .then((response) => {
+                    this.medicins = response.data;
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            },
             handleSubmit(){
                 this.isLoading = true;
                 axios
-				.post("/api/log/register", this.form)
+				.post('/api/log/register', this.form)
 				.then((response) => {
                     setTimeout(() => {
                         this.isLoading = false;
@@ -110,6 +137,7 @@
 
                         setTimeout(() => {
                             this.showMsg = false;
+                            this.form = {};
                         }, 1000);
                     }, 1000);
 				})
@@ -123,8 +151,6 @@
                             this.showMsg = false;
                         }, 1000);
                     }, 1000);
-
-
 
 					console.error(error);
 				});

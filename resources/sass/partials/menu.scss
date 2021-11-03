@@ -52,6 +52,13 @@
             a{
                 color: #fff;
             }
+            button{
+                all: unset;
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
         }
     }
 }

@@ -28,12 +28,13 @@ class MigraineLogService implements MigraineLogInterface
      */
     public function create($data)
     {
-        $migraineLog             = $this->migraineLogRepository->initialize();
-        $migraineLog->user_id    = data_get($data, 'user_id');
-        $migraineLog->comment    = data_get($data, 'comment');
-        $migraineLog->pain_level = data_get($data, 'painLevel');
-        $migraineLog->date       = data_get($data, 'date');
-        $migraineLog->type       = data_get($data, 'type');
+        $migraineLog                = $this->migraineLogRepository->initialize();
+        $migraineLog->user_id       = data_get($data, 'user_id');
+        $migraineLog->comment       = data_get($data, 'comment');
+        $migraineLog->pain_level    = data_get($data, 'painLevel');
+        $migraineLog->date          = data_get($data, 'date');
+        $migraineLog->type          = data_get($data, 'type');
+        $migraineLog->medicin_id    = data_get($data, 'medicin');
 
         $this->migraineLogRepository->store($migraineLog);
 

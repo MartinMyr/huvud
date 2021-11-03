@@ -26,6 +26,7 @@ class MigraineLogController extends Controller
             'date'      => 'required|date',
             'type'      => 'required|string',
             'comment'   => 'string|max:200|nullable',
+            'medicin'   => 'sometimes|integer',
         ]);
 
         return response()->json(
