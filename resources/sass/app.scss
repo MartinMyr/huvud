@@ -1,8 +1,7 @@
-
-@import 'typography';
-
-// Variables
-@import 'variables';
+// Settings
+@import 'settings/typography';
+@import 'settings/variables';
+@import 'settings/mixins';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -23,6 +22,7 @@
 //Pages
 @import 'pages/register';
 @import 'pages/profile';
+@import 'pages/login';
 
 //Components
 @import 'components/logs';

@@ -179,6 +179,9 @@
                 formData.append('name', this.user.name);
                 formData.append('email', this.user.email);
                 formData.append('id', this.user.id);
+                formData.append('password', this.user.password);
+                formData.append('c_password', this.user.c_password);
+                formData.append('old_password', this.user.old_password);
 
                 axios
 				.post('/api/user/update/profile', formData, config )

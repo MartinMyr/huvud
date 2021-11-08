@@ -1,4 +1,9 @@
 main{
     margin-left: 350px;
     padding: 80px 50px;
+
+    @include tablet {
+        margin-left: 250px;
+        padding: 60px 20px;
+    }
 }

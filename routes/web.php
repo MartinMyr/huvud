@@ -23,14 +23,15 @@ Auth::routes([
 ]);
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/dashboard', function () {
         return view('dashboard', ['user' => Auth::user()]);
-    });
+    })->name('dashboard');
     Route::get('/register', function () {
         return view('register', ['user' => Auth::user()]);
-    });
+    })->name('register');
     Route::get('/profile', function () {
         return view('profile', ['user' => Auth::user()]);
-    });
+    })->name('profile');
 
 });

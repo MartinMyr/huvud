@@ -1,7 +1,7 @@
 <div id="side-menu">
     <div class="minimize"></div>
     <div class="profile">
-        <a href="/profile">
+        <a href="{{route('profile')}}">
             @if(isset($user->profile_img))
                 <div
                     class="img"
@@ -21,10 +21,10 @@
 
     <div class="menu-items">
         <div class="item">
-            <a href="/register">Ny registrering</a>
+            <a href="{{route('register')}}">Ny registrering</a>
         </div>
         <div class="item">
-            <a href="/dashboard">Översikt</a>
+            <a href="{{route('dashboard')}}">Översikt</a>
         </div>
         <div class="item">
             <form method="POST" action="{{ route('logout') }}">
